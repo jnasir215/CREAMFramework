@@ -1,16 +1,16 @@
 package com.codedifferently.collections;
 
-public interface List {
+public interface List<T> {
 
-    void add();
+    void add(T input);
 
-    void remove();
+    void remove(T input);
 
-    void get();
+    T get(T input);
 
-    void isEmpty();
+    boolean isEmpty();
 
-    void contains();
+    boolean contains(T input);
 
     void size();
 }
