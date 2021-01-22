@@ -223,8 +223,7 @@ public class LinkedList<T> implements List<T> {
     // Helper method that returns the node at the given index.
     private Node getNodeAtIndex(Integer givenIndex) {
         if (head == null || givenIndex < 0) {
-            System.out.println("Index " + givenIndex + " is out of range");
-            return null;
+            throw new IndexOutOfBoundsException();
         }
         int index = 0;
         Node currentNode = head;
@@ -235,8 +234,6 @@ public class LinkedList<T> implements List<T> {
             index++;
             currentNode = currentNode.getNextNode();
         }
-
-        System.out.println("Index " + index + " is out of range");
-        return null;
+        throw new IndexOutOfBoundsException();
     }
 }
