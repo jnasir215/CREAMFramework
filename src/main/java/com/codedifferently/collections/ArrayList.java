@@ -47,13 +47,20 @@ public class ArrayList<T> implements List<T>{
     }
 
     @Override
-    public T get(T input) {
-        return null;
+    public T get(int index) {
+            if (tempArray[index] != null) {
+                return tempArray[index];
+            }
+            else {
+                throw new IndexOutOfBoundsException();
+            }
     }
 
     @Override
     public boolean isEmpty() {
-        return false;
+        if(tempArray == null)
+            return true;
+        else return false;
     }
 
     @Override
@@ -70,7 +77,13 @@ public class ArrayList<T> implements List<T>{
     }
 
     @Override
-    public void size() {
-
+    public int size() {
+        for (int i = 0; i < tempArray.length; i++) {
+            if (tempArray[i] == null) {
+                return i;
+            }
+        }
+        return tempArray.length;
     }
+
 }

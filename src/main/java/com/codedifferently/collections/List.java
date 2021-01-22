@@ -6,11 +6,11 @@ public interface List<T> {
 
     void remove(T input);
 
-    T get(T input);
+    T get(int index);
 
     boolean isEmpty();
 
     boolean contains(T input);
 
-    void size();
+    int size();
 }
