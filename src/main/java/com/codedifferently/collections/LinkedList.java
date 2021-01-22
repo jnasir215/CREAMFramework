@@ -1,6 +1,11 @@
 package com.codedifferently.collections;
 
+import org.w3c.dom.Node;
+
 public class LinkedList<T> implements List<T> {
+
+    private Node head;
+    private Node tail;
 
     class Node {
         private Node nextNode;
@@ -12,11 +17,6 @@ public class LinkedList<T> implements List<T> {
 
         public void setNextNode(Node node) { nextNode = node; }
     }
-
-
-    private Node head;
-    private Node tail;
-
 
 
     public LinkedList() {
@@ -56,10 +56,7 @@ public class LinkedList<T> implements List<T> {
         return sb.toString();
     }
 
-    // O(1) Constant Time when adding a single value.
-    // O(n) Linear Time when adding multiple values, where n is the length of items being added in constant time.
-    // Add item(s) to list.
-    // (T... is called the varargs element.)
+    // O(1) Constant Time.
     public void add(T input) {
         if (head == null) {
             // List has no values. Create head.
@@ -76,18 +73,12 @@ public class LinkedList<T> implements List<T> {
         }
     }
 
-    @Override
-    public boolean isEmpty() {
-        if (size() == 0) return true;
-        return false;
-    }
-
+    // O(n) Linear Time.
     @Override
     public void remove(T input) {
         Integer nodeToRmoveIndex = indexOf(input);
         remove(nodeToRmoveIndex);
     }
-
 
     // O(n) Linear Time.
     // Removes node from list and returns it.
@@ -144,6 +135,13 @@ public class LinkedList<T> implements List<T> {
     }
 
     // O(n) Linear Time.
+    @Override
+    public boolean isEmpty() {
+        if (size() == 0) return true;
+        return false;
+    }
+
+    // O(n) Linear Time.
     // Gets value at index.
     @Override
     public T get(int index) {
@@ -185,7 +183,6 @@ public class LinkedList<T> implements List<T> {
     public boolean contains(T value) {
         if (indexOf(value) != -1)
             return true;
-
         return false;
     }
 
