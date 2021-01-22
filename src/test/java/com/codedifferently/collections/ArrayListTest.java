@@ -62,13 +62,20 @@ public class ArrayListTest {
     public void remove() {
         String name1 = "DreamTeam";
         String name2 = "TeamDream";
+        String name3 = "DreamTeam2";
+        String name4 = "TeamDream2";
+        String name5 = "DreamTeam3";
+        String name6 = "TeamDream3";
         arrayList.add(name1);
         arrayList.add(name2);
-        arrayList.remove(name1);
+        arrayList.add(name3);
+        arrayList.add(name4);
+        arrayList.add(name5);
+        arrayList.add(name6);
+        arrayList.remove(name4);
 
-
-        boolean expected = true;
-        boolean actual = arrayList.contains(name1);
+        boolean expected = false;
+        boolean actual = arrayList.contains(name4);
 
         Assert.assertEquals(expected, actual);
     }
