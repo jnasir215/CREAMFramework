@@ -1,18 +1,18 @@
 package com.codedifferently.collections;
 
-public interface Map {
+public interface Map<K, P> {
 
-    void put();
+    void put (K key, P pair);
 
-    void get();
+    P get(K key);               // Returns the pair associated with the given key.
 
-    void remove();
+    P remove(K key);            // Remove item by key and return its pair.
 
-    void size();
+    void empty();               // Remove all elements.
 
-    void empty();
+    Integer size();             // Returns the number of keys.
 
-    void containsKey();
+    boolean containsKey(K key);
 
-    void containsValue();
+    boolean containsValue(P pair);
 }
