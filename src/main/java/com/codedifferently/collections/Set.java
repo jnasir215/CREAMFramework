@@ -1,14 +1,14 @@
 package com.codedifferently.collections;
 
-public interface Set {
+public interface Set<T> {
 
-    void add();
+    void add(T value);
 
-    void remove();
+    T remove(T value);             // Removes value and returns it.
 
-    void contains();
+    boolean contains(T value);     // Returns true if Set contains the given value.
 
-    void size();
+    Integer size();
 
     void clear();
 }
