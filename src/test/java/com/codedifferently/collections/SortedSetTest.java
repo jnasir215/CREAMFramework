@@ -22,6 +22,22 @@ public class SortedSetTest {
 
         boolean expected = true;
         boolean actual = testSet.contains('C');
+        testSet.list();
+
+        Assert.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void addWithIntegers() {
+        Set<Integer> testSet = new SortedSet<>();
+        testSet.add(10);
+        testSet.add(20);
+        testSet.add(30);
+        testSet.add(40);
+
+        boolean expected = true;
+        boolean actual = testSet.contains(20);
+        testSet.list();
 
         Assert.assertEquals(expected, actual);
     }

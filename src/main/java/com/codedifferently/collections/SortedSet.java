@@ -1,15 +1,14 @@
 package com.codedifferently.collections;
 
-import java.util.HashMap;
-import java.util.SortedMap;
+import java.util.TreeMap;
 
 public class SortedSet<T> implements Set<T> {
 
-    private transient HashMap<T, Object> tempSet;
+    private transient TreeMap<T, Object> tempSet;
     private static final Object PRESENT =  new Object();
 
     public SortedSet() {
-        tempSet = new HashMap<>();
+        tempSet = new TreeMap<>();
     }
 
     @Override
@@ -38,7 +37,7 @@ public class SortedSet<T> implements Set<T> {
 
     @Override
     public void clear() {
-        tempSet = new HashMap<>();
+        tempSet = new TreeMap<>();
     }
 
     public void list() {
