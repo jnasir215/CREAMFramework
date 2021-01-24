@@ -4,7 +4,7 @@ public interface Set<T> {
 
     boolean add(T input);
 
-    boolean remove(T input);
+    void remove(T input);
 
     boolean contains(T input);
 

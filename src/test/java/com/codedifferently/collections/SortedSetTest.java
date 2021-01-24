@@ -20,10 +20,10 @@ public class SortedSetTest {
         testSet.add('A');
         testSet.add('B');
 
-        //expected = [A, B, C];
-        testSet.list(); // assign to actual
+        boolean expected = true;
+        boolean actual = testSet.contains('C');
 
-        //Assert.assertEquals(expected, actual);
+        Assert.assertEquals(expected, actual);
     }
 
     @Test
@@ -33,11 +33,11 @@ public class SortedSetTest {
         testSet.add('C');
         testSet.add('B');
         testSet.remove('C');
-        
-        //expected = [A, B];
-        testSet.list(); // assign to actual
 
-        //Assert.assertEquals(expected, actual);
+        boolean expected = false;
+        boolean actual = testSet.contains('C');
+
+        Assert.assertEquals(expected, actual);
     }
 
     @Test
@@ -95,10 +95,13 @@ public class SortedSetTest {
         testSet.add('C');
         testSet.add('B');
         testSet.add('D');
-        testSet.remove('C');
 
         testSet.list();
         testSet.clear();
         testSet.list();
+
+        int expected = 0;
+        int actual = testSet.size();
+        Assert.assertEquals(expected, actual);
     }
 }

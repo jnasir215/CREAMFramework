@@ -13,14 +13,13 @@ public class UnsortedSet<T> implements Set<T> {
     }
 
     @Override
-    public void add(T value) {
-        hashMap.put(value, 0);
+    public boolean add(T value) {
+        return hashMap.put(value, 0) == null;
     }
 
     @Override
-    public T remove(T value) {
+    public void remove(T value) {
         hashMap.remove(value);
-        return value;
     }
 
     @Override
@@ -31,7 +30,7 @@ public class UnsortedSet<T> implements Set<T> {
     }
 
     @Override
-    public Integer size() {
+    public int size() {
         int numOfKeys = 0;
         for (T keySet : hashMap.keySet()) {
             numOfKeys++;
@@ -42,5 +41,10 @@ public class UnsortedSet<T> implements Set<T> {
     @Override
     public void clear() {
         hashMap = new HashMap<>();
+    }
+
+    @Override
+    public void list() {
+        System.out.println(hashMap.keySet());
     }
 }

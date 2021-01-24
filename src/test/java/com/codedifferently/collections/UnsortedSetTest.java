@@ -8,11 +8,28 @@ public class UnsortedSetTest {
     @Test
     public void add() {
         Set<Integer> set = new UnsortedSet<>();
-        set.add(10);
         set.add(20);
+        set.add(10);
         set.add(30);
-        int expected = 3;
+        set.add(50);
+        set.add(40);
+        int expected = 5;
         int actual = set.size();
+        set.list();
+        Assert.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void add2() {
+        Set<Character> set = new UnsortedSet<>();
+        set.add('C');
+        set.add('B');
+        set.add('E');
+        set.add('A');
+        set.add('D');
+        int expected = 5;
+        int actual = set.size();
+        set.list();
         Assert.assertEquals(expected, actual);
     }
 

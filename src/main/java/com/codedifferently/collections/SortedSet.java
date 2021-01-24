@@ -1,6 +1,7 @@
 package com.codedifferently.collections;
 
 import java.util.HashMap;
+import java.util.SortedMap;
 
 public class SortedSet<T> implements Set<T> {
 
@@ -17,8 +18,8 @@ public class SortedSet<T> implements Set<T> {
     }
 
     @Override
-    public boolean remove(T input) {
-        return tempSet.remove(input) == PRESENT;
+    public void remove(T input) {
+        tempSet.remove(input);
     }
 
     @Override
