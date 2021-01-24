@@ -1,14 +1,16 @@
 package com.codedifferently.collections;
 
-public interface Set {
+public interface Set<T> {
 
-    void add();
+    boolean add(T input);
 
-    void remove();
+    boolean remove(T input);
 
-    void contains();
+    boolean contains(T input);
 
-    void size();
+    int size();
 
     void clear();
+
+    void list();
 }
