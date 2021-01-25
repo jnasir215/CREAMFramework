@@ -3,7 +3,7 @@ package com.codedifferently.collections;
 import org.junit.Assert;
 import org.junit.Test;
 
-public class UnsortedMapTest {
+public class SortedMapTest {
 
     @Test
     public void testIndexesAreLessThanArraySize() {
@@ -18,6 +18,11 @@ public class UnsortedMapTest {
         }
 
         // Test will pass if the above Assert.fail() is never called.
+    }
+
+    @Test
+    public void testKeyAreSorted() {
+
     }
 
     @Test
