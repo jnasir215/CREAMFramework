@@ -1,7 +1,5 @@
 package com.codedifferently.collections;
 
-import org.w3c.dom.Node;
-
 public class LinkedList<T> implements List<T> {
 
     private Node head;
@@ -58,15 +56,12 @@ public class LinkedList<T> implements List<T> {
 
     // O(1) Constant Time.
     public void add(T input) {
-        if (head == null) {
-            // List has no values. Create head.
+        if (head == null) {                    // List has no values. Create head.
             head = new Node(input);
-        } else if (tail == null) {
-            // List only has 1 value. Create tail.
+        } else if (tail == null) {             // List only has 1 value. Create tail.
             tail = new Node(input);
             head.setNextNode(tail);
-        } else {
-            // List has at least 2 values. Point current tail to new tail.
+        } else {                               // List has at least 2 values. Point current tail to new tail.
             Node newTail = new Node(input);
             tail.setNextNode(newTail);
             tail = newTail;
@@ -100,9 +95,8 @@ public class LinkedList<T> implements List<T> {
     }
 
     // O(1) Constant Time.
-    // Removes first element.
+    // Removes first element by making the second node the new head.
     public T removeFirst() {
-        // Sets second node in list to be the new head
         Node currentHeadNode = head;
         Node newHeadNode = head.getNextNode();
         head = newHeadNode;
@@ -115,7 +109,7 @@ public class LinkedList<T> implements List<T> {
     public T removeLast() {
         if (head == null) return null;
 
-            // List only has 1 item. Tell list to stop pointing at head.
+        // List only has 1 item. Tell list to stop pointing at head.
         else if (head != null && tail == null) {
             Node prevHead = head;
             head = null;
