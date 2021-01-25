@@ -3,14 +3,19 @@ package com.codedifferently.collections;
 // This is a TreeMap
 public class SortedMap<K, P> implements Map<K, P> {
 
-    private List<KeyNode>[] buckets;
-    private static final int BUCKETCOUNT = 22;
+    private List<KeyNode>[] buckets;                    // Buckets hold KeyNodes. KeyNodes hold pair.
+    private static final int BUCKETCOUNT = 16;
 
     // Binary Nodes
     class KeyNode<T> {
         public KeyNode left;
         public KeyNode right;
         public T key;
+        public List<P> pairs;
+
+        public KeyNode() {
+            pairs = new LinkedList<>();
+        }
     }
 
     public SortedMap() {
@@ -20,17 +25,20 @@ public class SortedMap<K, P> implements Map<K, P> {
     @Override
     public void put(K key, P pair) {
 
-        KeyNode keyNode = buckets[0].get(0);
-
-        for (List bucket : buckets) {
-
-        }
-
         int index = getIndexFromHash(key);
     }
 
     @Override
-    public P get(K key) {
+    public List<P> get(K key) {
+        int bucketIndex = getIndexFromHash(key);            // Key is the index of the bucket
+        List<KeyNode> keyNodes = buckets[bucketIndex];      // Get bucket
+
+        for (int i = 0; i < keyNodes.size(); i++) {         // Loop through all keys in bucket.
+            KeyNode keyNode = keyNodes.get(i);
+            if (key == keyNode.key) {                       // Find key's KeyNode.
+                return keyNode.pairs;                       // Return the pairs associated with that key.
+            }
+        }
         return null;
     }
 

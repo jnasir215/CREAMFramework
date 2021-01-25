@@ -12,6 +12,7 @@ public class SortedMapTest {
         String[] keys = {"a", "b", "c", "d", "d", "f", "g"};
         for (String key : keys) {
             int index = map.getIndexFromHash(key);
+            System.out.println(index);
             if (index > map.getArraySize()) {
                 Assert.fail();
             }
@@ -36,7 +37,9 @@ public class SortedMapTest {
         map.put("A", 10);
 
         int expected = 10;
-        int actual = map.get("A");
+        List<Integer> pairs = map.get("A");
+        int actual = pairs.get(0);
+
         Assert.assertEquals(expected, actual);
     }
 
