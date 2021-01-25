@@ -22,7 +22,25 @@ public class SortedMap<K, P> implements Map<K, P> {
         }
     }
 
+    @Override
+    public String toString() {
+        String output = "";
+        for (int i = 0; i < buckets.length; i++) {
+            output += "Bucket: " + i;
+            for (int j = 0; j < buckets[i].size(); j++) {
+                output += " - Pairs are: " + buckets[i].get(j).pairs.get(0);
+            }
+            output += "\n";
+        }
+
+        return output;
+    }
+
     public SortedMap() {
+        createEmptyBuckets();
+    }
+
+    private void createEmptyBuckets() {
         buckets = new LinkedList[BUCKETCOUNT - 1];      // Subtract 1 because arrays are 0 based.
         for (int i = 0; i < buckets.length; i++) {
             buckets[i] = new LinkedList<>();
@@ -88,12 +106,18 @@ public class SortedMap<K, P> implements Map<K, P> {
 
     @Override
     public void empty() {
-
+        createEmptyBuckets();
     }
 
     @Override
     public Integer size() {
-        return null;
+        int counter = 0;
+        for (List<KeyNode> bucket : buckets) {
+            for (int i = 0; i < bucket.size(); i++) {
+                counter++;
+            }
+        }
+        return counter;
     }
 
     @Override
@@ -104,7 +128,13 @@ public class SortedMap<K, P> implements Map<K, P> {
     }
 
     @Override
-    public boolean containsValue(P pair) {
+    public boolean containsPair(P pair) {
+        for (List<KeyNode> bucket : buckets) {
+            for (int i = 0; i < bucket.size(); i++) {
+                if (pair == bucket.get(i).pairs.get(0))
+                    return true;
+            }
+        }
         return false;
     }
 

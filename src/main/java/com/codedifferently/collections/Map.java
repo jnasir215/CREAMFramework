@@ -16,5 +16,5 @@ public interface Map<K, P> {
 
     boolean containsKey(K key);
 
-    boolean containsValue(P pair);
+    boolean containsPair(P pair);
 }

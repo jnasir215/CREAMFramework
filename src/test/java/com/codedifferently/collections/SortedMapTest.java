@@ -23,7 +23,19 @@ public class SortedMapTest {
 
     @Test
     public void testKeyAreSorted() {
+    }
 
+    @Test
+    public void toStringTest() {
+        Map<String, Integer> map = new SortedMap<>();
+        map.put("A", 10);
+        map.put("B", 20);
+        map.put("C", 30);
+        map.put("D", 40);
+        map.put("E", 50);
+        map.put("F", 60);
+        map.put("G", 70);
+        System.out.println(map.toString());
     }
 
     @Test
@@ -33,6 +45,7 @@ public class SortedMapTest {
 
         boolean expected = true;
         boolean actual = map.containsKey("First");
+
         Assert.assertEquals(expected, actual);
     }
 
@@ -102,7 +115,7 @@ public class SortedMapTest {
         map.put("First", 1);
 
         boolean expected = true;
-        boolean actual = map.containsValue(1);
+        boolean actual = map.containsPair(1);
         Assert.assertEquals(expected, actual);
     }
 }
