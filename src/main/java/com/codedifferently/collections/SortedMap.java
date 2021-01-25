@@ -1,6 +1,5 @@
 package com.codedifferently.collections;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.LinkedList;
 
@@ -15,11 +14,7 @@ public class SortedMap<K, P> implements Map<K, P> {
         public KeyNode left;
         public KeyNode right;
         public T key;
-        public List<P> pairs;
-
-        public KeyNode() {
-            pairs = new LinkedList<>();
-        }
+        public P pair;
     }
 
     @Override
@@ -28,7 +23,7 @@ public class SortedMap<K, P> implements Map<K, P> {
         for (int i = 0; i < buckets.length; i++) {
             output += "Bucket: " + i;
             for (int j = 0; j < buckets[i].size(); j++) {
-                output += " - Pairs are: " + buckets[i].get(j).pairs.get(0);
+                output += " - Pairs are: " + buckets[i].get(j).pair;
             }
             output += "\n";
         }
@@ -57,7 +52,7 @@ public class SortedMap<K, P> implements Map<K, P> {
         if (keyNodes.size() == 0) {
             KeyNode keyNode = new KeyNode();
             keyNode.key = key;
-            keyNode.pairs.add(pair);
+            keyNode.pair = pair;
             buckets[index].add(keyNode);
             return;
         }
@@ -66,26 +61,26 @@ public class SortedMap<K, P> implements Map<K, P> {
         for (int i = 0; i < keyNodes.size(); i++) {
             KeyNode keyNode = keyNodes.get(i);
             if (keyNode.key == key) {
-                keyNode.pairs.add(pair);
+                keyNode.pair = pair;
             } else {
                 // If not, create keynode for that key
                 KeyNode newKeyNode = new KeyNode();
                 newKeyNode.key = key;
-                newKeyNode.pairs.add(pair);
+                newKeyNode.pair = pair;
                 buckets[index].add(newKeyNode);
             }
         }
     }
 
     @Override
-    public List<P> get(K key) {
+    public P get(K key) {
         int bucketIndex = getIndexFromHash(key);            // Key is the index of the bucket
         List<KeyNode> keyNodes = buckets[bucketIndex];      // Get bucket
 
         for (int i = 0; i < keyNodes.size(); i++) {         // Loop through all keys in bucket.
             KeyNode keyNode = keyNodes.get(i);
             if (key == keyNode.key) {                       // Find key's KeyNode.
-                return keyNode.pairs;                       // Return the pairs associated with that key.
+                return (P) keyNode.pair;                       // Return the pairs associated with that key.
             }
         }
         return null;
@@ -131,7 +126,7 @@ public class SortedMap<K, P> implements Map<K, P> {
     public boolean containsPair(P pair) {
         for (List<KeyNode> bucket : buckets) {
             for (int i = 0; i < bucket.size(); i++) {
-                if (pair == bucket.get(i).pairs.get(0))
+                if (pair == bucket.get(i).pair)
                     return true;
             }
         }

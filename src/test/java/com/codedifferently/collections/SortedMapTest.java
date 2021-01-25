@@ -23,6 +23,7 @@ public class SortedMapTest {
 
     @Test
     public void testKeyAreSorted() {
+
     }
 
     @Test
@@ -55,8 +56,7 @@ public class SortedMapTest {
         map.put("A", 10);
 
         int expected = 10;
-        List<Integer> pairs = map.get("A");
-        int actual = pairs.get(0);
+        int actual = map.get("A");
 
         Assert.assertEquals(expected, actual);
     }
