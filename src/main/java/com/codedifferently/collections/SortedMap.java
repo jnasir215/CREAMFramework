@@ -1,5 +1,8 @@
 package com.codedifferently.collections;
 
+import java.util.List;
+import java.util.LinkedList;
+
 // This is a TreeMap
 public class SortedMap<K, P> implements Map<K, P> {
 
@@ -20,12 +23,39 @@ public class SortedMap<K, P> implements Map<K, P> {
 
     public SortedMap() {
         buckets = new LinkedList[BUCKETCOUNT - 1];      // Subtract 1 because arrays are 0 based.
+        for (int i = 0; i < buckets.length; i++) {
+            buckets[i] = new LinkedList<>();
+        }
     }
 
     @Override
     public void put(K key, P pair) {
-
         int index = getIndexFromHash(key);
+
+        List<KeyNode> keyNodes = buckets[index];
+
+        // If there are no keys in this bucket, instantiate one
+        if (keyNodes.size() == 0) {
+            KeyNode keyNode = new KeyNode();
+            keyNode.key = key;
+            keyNode.pairs.add(pair);
+            buckets[index].add(keyNode);
+            return;
+        }
+
+        // Else, loop through every keynode to see if the key exists
+        for (int i = 0; i < keyNodes.size(); i++) {
+            KeyNode keyNode = keyNodes.get(i);
+            if (keyNode.key == key) {
+                keyNode.pairs.add(pair);
+            } else {
+                // If not, create keynode for that key
+                KeyNode newKeyNode = new KeyNode();
+                newKeyNode.key = key;
+                newKeyNode.pairs.add(pair);
+                buckets[index].add(newKeyNode);
+            }
+        }
     }
 
     @Override

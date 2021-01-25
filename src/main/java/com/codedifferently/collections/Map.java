@@ -1,10 +1,12 @@
 package com.codedifferently.collections;
 
+import java.util.List;
+
 public interface Map<K, P> {
 
     void put (K key, P pair);
 
-    List<P> get(K key);               // Returns the pair associated with the given key.
+    List<P> get(K key);         // Returns the pair associated with the given key.
 
     P remove(K key);            // Remove item by key and return its pair.
 
