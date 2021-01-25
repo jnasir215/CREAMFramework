@@ -6,6 +6,21 @@ import org.junit.Test;
 public class SortedMapTest {
 
     @Test
+    public void testIndexesAreLessThanArraySize() {
+        SortedMap<String, Integer> map = new SortedMap<>();
+
+        String[] keys = {"a", "b", "c", "d", "d", "f", "g"};
+        for (String key : keys) {
+            int index = map.getIndexFromHashCode(key);
+            if (index > map.getArraySize()) {
+                Assert.fail();
+            }
+        }
+
+        // Test passes if the above Assert.fail() is never called.
+    }
+
+    @Test
     public void put() {
         Map<String, Integer> map = new SortedMap<>();
         map.put("First", 1);

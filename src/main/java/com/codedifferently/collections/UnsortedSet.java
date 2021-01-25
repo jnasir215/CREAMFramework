@@ -3,6 +3,7 @@ package com.codedifferently.collections;
 import java.util.Map;
 import java.util.HashMap;
 
+// This is a HashSet
 public class UnsortedSet<T> implements Set<T> {
 
     // UnsortedSet is actually just a hashmap without pairs. The pair here can be any type because it is never used.
