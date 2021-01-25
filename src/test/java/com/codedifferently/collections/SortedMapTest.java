@@ -29,14 +29,30 @@ public class SortedMapTest {
     @Test
     public void toStringTest() {
         Map<String, Integer> map = new SortedMap<>();
-        map.put("A", 10);
         map.put("B", 20);
-        map.put("C", 30);
-        map.put("D", 40);
         map.put("E", 50);
+        map.put("C", 30);
+        map.put("A", 10);
         map.put("F", 60);
+        map.put("D", 40);
         map.put("G", 70);
-        System.out.println(map.toString());
+        String expected = "Bucket: 0\n" +
+                "Bucket: 1\n" +
+                "Bucket: 2\n" +
+                "Bucket: 3\n" +
+                "Bucket: 4\n" +
+                "Bucket: 5 - Pairs are: 10\n" +
+                "Bucket: 6 - Pairs are: 20\n" +
+                "Bucket: 7 - Pairs are: 30\n" +
+                "Bucket: 8 - Pairs are: 40\n" +
+                "Bucket: 9 - Pairs are: 50\n" +
+                "Bucket: 10 - Pairs are: 60\n" +
+                "Bucket: 11 - Pairs are: 70\n" +
+                "Bucket: 12\n" +
+                "Bucket: 13\n" +
+                "Bucket: 14";
+        String actual = map.toString();
+        Assert.assertEquals(expected, actual);
     }
 
     @Test

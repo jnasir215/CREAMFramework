@@ -9,7 +9,7 @@ public class SortedMap<K, P> implements Map<K, P> {
     private List<KeyNode>[] buckets;                    // Buckets hold KeyNodes. KeyNodes hold pair.
     private static final int BUCKETCOUNT = 16;
 
-    // Binary Nodes
+    // Binary nodes for every key.
     class KeyNode<T> {
         public KeyNode left;
         public KeyNode right;
@@ -25,9 +25,10 @@ public class SortedMap<K, P> implements Map<K, P> {
             for (int j = 0; j < buckets[i].size(); j++) {
                 output += " - Pairs are: " + buckets[i].get(j).pair;
             }
-            output += "\n";
+            if (i == buckets.length - 1 == false) {
+                output += "\n";
+            }
         }
-
         return output;
     }
 
