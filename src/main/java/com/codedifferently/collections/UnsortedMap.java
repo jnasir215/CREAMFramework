@@ -3,8 +3,8 @@ package com.codedifferently.collections;
 import java.util.List;
 import java.util.LinkedList;
 
-// This is a TreeMap
-public class SortedMap<K, P> implements Map<K, P> {
+// This is a HashMap
+public class UnsortedMap<K, P> implements Map<K, P> {
 
     private List<KeyNode>[] buckets;                    // Buckets hold KeyNodes. KeyNodes hold pair.
     private static final int BUCKETCOUNT = 16;
@@ -32,7 +32,7 @@ public class SortedMap<K, P> implements Map<K, P> {
         return output;
     }
 
-    public SortedMap() {
+    public UnsortedMap() {
         createEmptyBuckets();
     }
 

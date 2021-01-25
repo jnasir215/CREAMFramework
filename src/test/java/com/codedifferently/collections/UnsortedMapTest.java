@@ -2,13 +2,12 @@ package com.codedifferently.collections;
 
 import org.junit.Assert;
 import org.junit.Test;
-import java.util.List;
 
-public class SortedMapTest {
+public class UnsortedMapTest {
 
     @Test
     public void testIndexesAreLessThanArraySize() {
-        SortedMap<String, Integer> map = new SortedMap<>();
+        UnsortedMap<String, Integer> map = new UnsortedMap<>();
 
         String[] keys = {"a", "b", "c", "d", "d", "f", "g"};
         for (String key : keys) {
@@ -28,7 +27,7 @@ public class SortedMapTest {
 
     @Test
     public void toStringTest() {
-        Map<String, Integer> map = new SortedMap<>();
+        Map<String, Integer> map = new UnsortedMap<>();
         map.put("B", 20);
         map.put("E", 50);
         map.put("C", 30);
@@ -57,7 +56,7 @@ public class SortedMapTest {
 
     @Test
     public void put() {
-        Map<String, Integer> map = new SortedMap<>();
+        Map<String, Integer> map = new UnsortedMap<>();
         map.put("First", 1);
 
         boolean expected = true;
@@ -68,7 +67,7 @@ public class SortedMapTest {
 
     @Test
     public void get() {
-        Map<String, Integer> map = new SortedMap<>();
+        Map<String, Integer> map = new UnsortedMap<>();
         map.put("A", 10);
 
         int expected = 10;
@@ -79,7 +78,7 @@ public class SortedMapTest {
 
     @Test
     public void remove() {
-        Map<String, Integer> map = new SortedMap<>();
+        Map<String, Integer> map = new UnsortedMap<>();
         map.put("A", 10);
         map.put("B", 20);
         map.put("C", 30);
@@ -92,7 +91,7 @@ public class SortedMapTest {
 
     @Test
     public void empty() {
-        Map<String, Integer> map = new SortedMap<>();
+        Map<String, Integer> map = new UnsortedMap<>();
         map.put("A", 10);
         map.put("B", 20);
         map.put("C", 30);
@@ -105,7 +104,7 @@ public class SortedMapTest {
 
     @Test
     public void size() {
-        Map<String, Integer> map = new SortedMap<>();
+        Map<String, Integer> map = new UnsortedMap<>();
         map.put("A", 10);
         map.put("B", 20);
         map.put("C", 30);
@@ -117,7 +116,7 @@ public class SortedMapTest {
 
     @Test
     public void containsKey() {
-        Map<String, Integer> map = new SortedMap<>();
+        Map<String, Integer> map = new UnsortedMap<>();
         map.put("First", 1);
 
         boolean expected = true;
@@ -127,7 +126,7 @@ public class SortedMapTest {
 
     @Test
     public void containsValue() {
-        Map<String, Integer> map = new SortedMap<>();
+        Map<String, Integer> map = new UnsortedMap<>();
         map.put("First", 1);
 
         boolean expected = true;
