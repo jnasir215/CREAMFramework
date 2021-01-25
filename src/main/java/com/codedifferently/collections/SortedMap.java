@@ -1,5 +1,6 @@
 package com.codedifferently.collections;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.LinkedList;
 
@@ -73,8 +74,16 @@ public class SortedMap<K, P> implements Map<K, P> {
     }
 
     @Override
-    public P remove(K key) {
-        return null;
+    public void remove(K key) {
+        int bucketIndex = getIndexFromHash(key);
+        List<KeyNode> keyNodes = buckets[bucketIndex];
+
+        for (int i = 0; i < keyNodes.size(); i++) {
+            KeyNode keyNode = keyNodes.get(i);
+            if (key == keyNode.key) {
+                keyNodes.remove(i);
+            }
+        }
     }
 
     @Override

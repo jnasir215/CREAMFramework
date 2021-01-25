@@ -8,7 +8,7 @@ public interface Map<K, P> {
 
     List<P> get(K key);         // Returns the pair associated with the given key.
 
-    P remove(K key);            // Remove item by key and return its pair.
+    void remove(K key);            // Remove item by key and return its pair.
 
     void empty();               // Remove all elements.
 

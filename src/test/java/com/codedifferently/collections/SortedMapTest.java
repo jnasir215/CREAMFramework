@@ -22,6 +22,11 @@ public class SortedMapTest {
     }
 
     @Test
+    public void testKeyAreSorted() {
+
+    }
+
+    @Test
     public void put() {
         Map<String, Integer> map = new SortedMap<>();
         map.put("First", 1);
