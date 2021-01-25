@@ -11,13 +11,13 @@ public class SortedMapTest {
 
         String[] keys = {"a", "b", "c", "d", "d", "f", "g"};
         for (String key : keys) {
-            int index = map.getIndexFromHashCode(key);
+            int index = map.getIndexFromHash(key);
             if (index > map.getArraySize()) {
                 Assert.fail();
             }
         }
 
-        // Test passes if the above Assert.fail() is never called.
+        // Test will pass if the above Assert.fail() is never called.
     }
 
     @Test

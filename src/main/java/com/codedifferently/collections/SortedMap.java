@@ -3,14 +3,14 @@ package com.codedifferently.collections;
 // This is a TreeMap
 public class SortedMap<K, P> implements Map<K, P> {
 
-    private List[] buckets;
+    private List<KeyNode>[] buckets;
     private static final int BUCKETCOUNT = 22;
 
     // Binary Nodes
-    class Node<T> {
-        public Node left;
-        public Node right;
-        public T value;
+    class KeyNode<T> {
+        public KeyNode left;
+        public KeyNode right;
+        public T key;
     }
 
     public SortedMap() {
@@ -19,7 +19,14 @@ public class SortedMap<K, P> implements Map<K, P> {
 
     @Override
     public void put(K key, P pair) {
-        int index = getIndexFromHashCode(key);
+
+        KeyNode keyNode = buckets[0].get(0);
+
+        for (List bucket : buckets) {
+
+        }
+
+        int index = getIndexFromHash(key);
     }
 
     @Override
@@ -54,8 +61,9 @@ public class SortedMap<K, P> implements Map<K, P> {
 
 
 
-    // Method is only public for testing purposes
-    public int getIndexFromHashCode(K key) {
+    // (Method is only public for testing purposes)
+    // Returns an index that has a value smaller than the length of the array. (To prevent out of range exceptions.)
+    public int getIndexFromHash(K key) {
         int hash = key.hashCode();
         int index = Math.floorMod(hash, buckets.length);
         return index;
