@@ -89,6 +89,8 @@ public class SortedMap<K, P> implements Map<K, P> {
 
     @Override
     public boolean containsKey(K key) {
+        if (get(key) != null)
+            return true;
         return false;
     }
 

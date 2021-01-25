@@ -13,7 +13,6 @@ public class SortedMapTest {
         String[] keys = {"a", "b", "c", "d", "d", "f", "g"};
         for (String key : keys) {
             int index = map.getIndexFromHash(key);
-            System.out.println(index);
             if (index > map.getArraySize()) {
                 Assert.fail();
             }
