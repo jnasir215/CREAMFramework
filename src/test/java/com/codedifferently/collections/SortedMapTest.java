@@ -193,7 +193,7 @@ public class SortedMapTest {
         map.put("First", 1);
 
         boolean expected = true;
-        boolean actual = map.containsPair(1);
+        boolean actual = map.containsValue(1);
         Assert.assertEquals(expected, actual);
     }
 }

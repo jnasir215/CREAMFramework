@@ -2,11 +2,11 @@ package com.codedifferently.collections;
 
 public interface Map<K, V> {
 
-    void put (K key, V pair);
+    void put (K key, V value);
 
-    V get(K key);         // Returns the pair associated with the given key.
+    V get(K key);               // Returns the pair associated with the given key.
 
-    void remove(K key);            // Remove item by key and return its pair.
+    void remove(K key);         // Remove item by key and return its pair.
 
     void empty();               // Remove all elements.
 
@@ -14,5 +14,6 @@ public interface Map<K, V> {
 
     boolean containsKey(K key);
 
-    boolean containsPair(V pair);
+    boolean containsValue(V value);
+
 }

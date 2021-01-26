@@ -12,10 +12,7 @@ public class SortedMap<K, V> implements Map<K, V> {
 
     private TreeSet<K> tree;
 
-    // Binary nodes for every key.
     class KeyNode<T> {
-        public KeyNode left;
-        public KeyNode right;
         public T key;
         public V pair;
     }
@@ -145,10 +142,10 @@ public class SortedMap<K, V> implements Map<K, V> {
     }
 
     @Override
-    public boolean containsPair(V pair) {
+    public boolean containsValue(V value) {
         for (List<KeyNode> bucket : buckets) {
             for (int i = 0; i < bucket.size(); i++) {
-                if (pair == bucket.get(i).pair)
+                if (value == bucket.get(i).pair)
                     return true;
             }
         }
