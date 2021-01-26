@@ -3,6 +3,7 @@ package com.codedifferently.collections;
 import org.junit.Assert;
 import org.junit.Test;
 import java.util.List;
+import java.util.TreeSet;
 
 public class SortedMapTest {
 
@@ -22,8 +23,55 @@ public class SortedMapTest {
     }
 
     @Test
-    public void testKeyAreSorted() {
+    public void getFirstKey() {
+        SortedMap<String, Integer> map = new SortedMap<>();
+        map.put("C", 3);
+        map.put("B", 2);
+        map.put("E", 5);
+        map.put("A", 1);
+        map.put("D", 4);
 
+        String expected = "A";
+        String actual = map.getFirstKey();
+
+        Assert.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void getLastKey() {
+        SortedMap<String, Integer> map = new SortedMap<>();
+        map.put("C", 3);
+        map.put("B", 2);
+        map.put("E", 5);
+        map.put("A", 1);
+        map.put("D", 4);
+
+        String expected = "E";
+        String actual = map.getLastKey();
+
+        Assert.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void getKeys() {
+        SortedMap<String, Integer> map = new SortedMap<>();
+        map.put("C", 3);
+        map.put("B", 2);
+        map.put("E", 5);
+        map.put("A", 1);
+        map.put("D", 4);
+
+        String[] expected = { "A", "B", "C", "D", "E" };   // Actual must be in this order
+        TreeSet<String> actual = map.getKeys();
+        int index = 0;
+        for (String key : actual) {
+            if (expected[index] != key) {
+                Assert.fail();
+            }
+            index++;
+        }
+
+        // Test will pass if the above Assert.fail() is never called.
     }
 
     @Test
@@ -91,7 +139,7 @@ public class SortedMapTest {
     }
 
     @Test
-    public void empty() {
+    public void emptyAndTestSize() {
         Map<String, Integer> map = new SortedMap<>();
         map.put("A", 10);
         map.put("B", 20);
@@ -100,6 +148,20 @@ public class SortedMapTest {
         map.empty();
         int expected = 0;
         int actual = map.size();
+        Assert.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void emptyAndTestTreeIsEmpty() {
+        SortedMap<String, Integer> map = new SortedMap<>();
+        map.put("A", 10);
+        map.put("B", 20);
+        map.put("C", 30);
+
+        map.empty();
+        int expected = 0;
+        TreeSet<String> treeSet = map.getTree();
+        int actual = treeSet.size();
         Assert.assertEquals(expected, actual);
     }
 

@@ -2,19 +2,36 @@ package com.codedifferently.collections;
 
 import java.util.List;
 import java.util.LinkedList;
+import java.util.TreeSet;
 
 // This is a TreeMap
-public class SortedMap<K, P> implements Map<K, P> {
+public class SortedMap<K, V> implements Map<K, V> {
 
     private List<KeyNode>[] buckets;                    // Buckets hold KeyNodes. KeyNodes hold pair.
     private static final int BUCKETCOUNT = 16;
+
+    private TreeSet<K> tree;
 
     // Binary nodes for every key.
     class KeyNode<T> {
         public KeyNode left;
         public KeyNode right;
         public T key;
-        public P pair;
+        public V pair;
+    }
+
+    public SortedMap() {
+        createEmptyBuckets();
+         tree = new TreeSet<>();
+
+    }
+
+    private void createEmptyBuckets() {
+        buckets = new LinkedList[BUCKETCOUNT - 1];      // Subtract 1 because arrays are 0 based.
+        for (int i = 0; i < buckets.length; i++) {
+            buckets[i] = new LinkedList<>();
+        }
+        tree = new TreeSet<>();
     }
 
     @Override
@@ -32,19 +49,8 @@ public class SortedMap<K, P> implements Map<K, P> {
         return output;
     }
 
-    public SortedMap() {
-        createEmptyBuckets();
-    }
-
-    private void createEmptyBuckets() {
-        buckets = new LinkedList[BUCKETCOUNT - 1];      // Subtract 1 because arrays are 0 based.
-        for (int i = 0; i < buckets.length; i++) {
-            buckets[i] = new LinkedList<>();
-        }
-    }
-
     @Override
-    public void put(K key, P pair) {
+    public void put(K key, V pair) {
         int index = getIndexFromHash(key);
 
         List<KeyNode> keyNodes = buckets[index];
@@ -55,6 +61,7 @@ public class SortedMap<K, P> implements Map<K, P> {
             keyNode.key = key;
             keyNode.pair = pair;
             buckets[index].add(keyNode);
+            tree.add(key);
             return;
         }
 
@@ -69,22 +76,35 @@ public class SortedMap<K, P> implements Map<K, P> {
                 newKeyNode.key = key;
                 newKeyNode.pair = pair;
                 buckets[index].add(newKeyNode);
+                tree.add(key);
             }
         }
     }
 
     @Override
-    public P get(K key) {
+    public V get(K key) {
         int bucketIndex = getIndexFromHash(key);            // Key is the index of the bucket
         List<KeyNode> keyNodes = buckets[bucketIndex];      // Get bucket
 
         for (int i = 0; i < keyNodes.size(); i++) {         // Loop through all keys in bucket.
             KeyNode keyNode = keyNodes.get(i);
             if (key == keyNode.key) {                       // Find key's KeyNode.
-                return (P) keyNode.pair;                       // Return the pairs associated with that key.
+                return (V) keyNode.pair;                    // Return the pairs associated with that key.
             }
         }
         return null;
+    }
+
+    public K getFirstKey() {
+        return tree.first();
+    }
+
+    public K getLastKey() {
+        return tree.last();
+    }
+
+    public TreeSet<K> getKeys() {
+        return tree;
     }
 
     @Override
@@ -96,6 +116,7 @@ public class SortedMap<K, P> implements Map<K, P> {
             KeyNode keyNode = keyNodes.get(i);
             if (key == keyNode.key) {
                 keyNodes.remove(i);
+                tree.remove(key);
             }
         }
     }
@@ -124,7 +145,7 @@ public class SortedMap<K, P> implements Map<K, P> {
     }
 
     @Override
-    public boolean containsPair(P pair) {
+    public boolean containsPair(V pair) {
         for (List<KeyNode> bucket : buckets) {
             for (int i = 0; i < bucket.size(); i++) {
                 if (pair == bucket.get(i).pair)
@@ -147,5 +168,9 @@ public class SortedMap<K, P> implements Map<K, P> {
     // Size of array and buckets are the same number.
     public int getArraySize() {
         return buckets.length;
+    }
+
+    public TreeSet<K> getTree() {
+        return tree;
     }
 }
