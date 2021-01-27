@@ -29,14 +29,16 @@ public class SortedMap<K, V> implements Map<K, V> {
         sortedKeysTree = new TreeSet<>();
     }
 
-    // Prints all buckets and the pairs in that bucket
+    // Prints all buckets and shows each key and pair in that bucket
     @Override
     public String toString() {
         String output = "";
         for (int i = 0; i < buckets.length; i++) {
-            output += "Bucket: " + i;
+            output += "Bucket " + i;
+            output += (i < 10) ? "  -> " : " -> ";
             for (int j = 0; j < buckets[i].size(); j++) {
-                output += " - Pairs are: " + buckets[i].get(j).pair;
+                output += (j > 0) ? ", " : "";
+                output += String.format("(key %s : value %s)", buckets[i].get(j).key, buckets[i].get(j).pair);
             }
             if (i == buckets.length - 1 == false) {
                 output += "\n";
@@ -158,7 +160,7 @@ public class SortedMap<K, V> implements Map<K, V> {
     // Returns an index that has a value smaller than the length of the array. (To prevent out of range exceptions.)
     public int getIndexFromHash(K key) {
         int hash = key.hashCode();
-        int index = Math.floorMod(hash, buckets.length);
+        int index = Math.abs(hash % buckets.length);
         return index;
     }
 

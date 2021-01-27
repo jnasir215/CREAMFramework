@@ -77,28 +77,39 @@ public class SortedMapTest {
     @Test
     public void toStringTest() {
         Map<String, Integer> map = new SortedMap<>();
-        map.put("B", 20);
-        map.put("E", 50);
-        map.put("C", 30);
-        map.put("A", 10);
-        map.put("F", 60);
-        map.put("D", 40);
-        map.put("G", 70);
-        String expected = "Bucket: 0\n" +
-                "Bucket: 1\n" +
-                "Bucket: 2\n" +
-                "Bucket: 3\n" +
-                "Bucket: 4\n" +
-                "Bucket: 5 - Pairs are: 10\n" +
-                "Bucket: 6 - Pairs are: 20\n" +
-                "Bucket: 7 - Pairs are: 30\n" +
-                "Bucket: 8 - Pairs are: 40\n" +
-                "Bucket: 9 - Pairs are: 50\n" +
-                "Bucket: 10 - Pairs are: 60\n" +
-                "Bucket: 11 - Pairs are: 70\n" +
-                "Bucket: 12\n" +
-                "Bucket: 13\n" +
-                "Bucket: 14";
+        map.put("b", 20);
+        map.put("e", 11);
+        map.put("c", 4);
+        map.put("a", 32);
+        map.put("f", 60);
+        map.put("d", 40);
+        map.put("g", 70);
+        map.put("hi", 100);
+        map.put("ok", 9);
+        map.put("wow", 80);
+        map.put("bee", 4);
+        map.put("happen", 30);
+        map.put("ardvark", 10);
+        map.put("ardvaek", 20);
+        map.put("jmcmasters411", 66);
+        map.put("hb", 80);
+        map.put("jj", 80);
+        map.put("k", 80);
+        String expected = "Bucket 0  -> (key ok : value 9), (key bee : value 4), (key happen : value 30), (key ardvark : value 10), (key ardvaek : value 20), (key jmcmasters411 : value 66), (key hb : value 80), (key k : value 80)\n" +
+                "Bucket 1  -> \n" +
+                "Bucket 2  -> (key jj : value 80)\n" +
+                "Bucket 3  -> \n" +
+                "Bucket 4  -> (key wow : value 80)\n" +
+                "Bucket 5  -> \n" +
+                "Bucket 6  -> \n" +
+                "Bucket 7  -> (key a : value 32)\n" +
+                "Bucket 8  -> (key b : value 20)\n" +
+                "Bucket 9  -> (key c : value 4)\n" +
+                "Bucket 10 -> (key d : value 40)\n" +
+                "Bucket 11 -> (key e : value 11)\n" +
+                "Bucket 12 -> (key f : value 60)\n" +
+                "Bucket 13 -> (key g : value 70)\n" +
+                "Bucket 14 -> (key hi : value 100)";
         String actual = map.toString();
         System.out.println(map.toString());
         Assert.assertEquals(expected, actual);
