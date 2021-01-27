@@ -6,14 +6,10 @@ public class LinkedList<T> implements List<T> {
     private Node tail;
 
     class Node {
-        private Node nextNode;
+        private Node next;
         public T value;
 
         public Node(T value) { this.value = value; }
-
-        public Node getNextNode() { return nextNode; }
-
-        public void setNextNode(Node node) { nextNode = node; }
     }
 
 
@@ -49,7 +45,7 @@ public class LinkedList<T> implements List<T> {
             } else {
                 sb.append(String.format("%s]", currentNode.value));
             }
-            currentNode = currentNode.getNextNode();
+            currentNode = currentNode.next;
         }
         return sb.toString();
     }
@@ -60,10 +56,10 @@ public class LinkedList<T> implements List<T> {
             head = new Node(input);
         } else if (tail == null) {             // List only has 1 value. Create tail.
             tail = new Node(input);
-            head.setNextNode(tail);
+            head.next = tail;
         } else {                               // List has at least 2 values. Point current tail to new tail.
             Node newTail = new Node(input);
-            tail.setNextNode(newTail);
+            tail.next = newTail;
             tail = newTail;
         }
     }
@@ -81,14 +77,14 @@ public class LinkedList<T> implements List<T> {
         if (index == 0) return removeFirst();
 
         Node prevNode = getNodeAtIndex(index - 1);
-        Node nodeToRemove = prevNode.getNextNode();
-        Node nextNode = nodeToRemove.getNextNode();
+        Node nodeToRemove = prevNode.next;
+        Node nextNode = nodeToRemove.next;
         if (nextNode == null) {
             // If removed node didn't have a node after it, it was the tail. Set prevNode to be the tail.
             tail = prevNode;
-            prevNode.setNextNode(null);
+            prevNode.next = null;
         } else {
-            prevNode.setNextNode(nextNode);
+            prevNode.next = nextNode;
         }
 
         return (T) nodeToRemove.value;
@@ -98,7 +94,7 @@ public class LinkedList<T> implements List<T> {
     // Removes first element by making the second node the new head.
     public T removeFirst() {
         Node currentHeadNode = head;
-        Node newHeadNode = head.getNextNode();
+        Node newHeadNode = head.next;
         head = newHeadNode;
         return (T) currentHeadNode.value;
     }
@@ -117,14 +113,14 @@ public class LinkedList<T> implements List<T> {
         }
 
         Node prevNode = head;
-        Node currentNode = head.getNextNode();
+        Node currentNode = head.next;
         // If node is pointing to a null node, it is the tail. prevNode is the node before the tail.
-        while (currentNode.getNextNode() != null) {
+        while (currentNode.next != null) {
             prevNode = currentNode;
-            currentNode = currentNode.getNextNode();
+            currentNode = currentNode.next;
         }
         tail = prevNode;
-        tail.setNextNode(null);
+        tail.next = null;
         return (T) currentNode.value;
     }
 
@@ -165,7 +161,7 @@ public class LinkedList<T> implements List<T> {
                 return index;
 
             index++;
-            currentNode = currentNode.getNextNode();
+            currentNode = currentNode.next;
         }
 
         return -1;
@@ -191,7 +187,7 @@ public class LinkedList<T> implements List<T> {
         Node currentNode = head;
         while (currentNode != null) {
             nodeCount++;
-            currentNode = currentNode.getNextNode();
+            currentNode = currentNode.next;
         }
         return nodeCount;
     }
@@ -204,8 +200,8 @@ public class LinkedList<T> implements List<T> {
         Node currentNode = head;
         Node nextNode = null;
         while (currentNode != null) {
-            nextNode = currentNode.getNextNode();
-            currentNode.setNextNode(prevNode);
+            nextNode = currentNode.next;
+            currentNode.next = prevNode;
             prevNode = currentNode;
             currentNode = nextNode;
 
@@ -226,7 +222,7 @@ public class LinkedList<T> implements List<T> {
                 return currentNode;
 
             index++;
-            currentNode = currentNode.getNextNode();
+            currentNode = currentNode.next;
         }
         throw new IndexOutOfBoundsException();
     }

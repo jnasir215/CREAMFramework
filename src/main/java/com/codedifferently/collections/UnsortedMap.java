@@ -3,7 +3,6 @@ package com.codedifferently.collections;
 import java.util.List;
 import java.util.LinkedList;
 
-// This is a HashMap
 public class UnsortedMap<K, P> implements Map<K, P> {
 
     private List<KeyNode>[] buckets;                    // Buckets hold KeyNodes. KeyNodes hold pair.
