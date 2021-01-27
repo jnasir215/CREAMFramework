@@ -10,7 +10,7 @@ public class UnsortedMapTest {
 
     @Test
     public void put() {
-        Map<String, Integer> map = new UnsortedMap<>();
+        UnsortedMap<String, Integer> map = new UnsortedMap<>();
         map.put("First", 1);
 
         boolean expected = true;
@@ -21,7 +21,7 @@ public class UnsortedMapTest {
 
     @Test
     public void get() {
-        Map<String, Integer> map = new UnsortedMap<>();
+        UnsortedMap<String, Integer> map = new UnsortedMap<>();
         map.put("A", 10);
 
         int expected = 10;
@@ -32,7 +32,7 @@ public class UnsortedMapTest {
 
     @Test
     public void remove() {
-        Map<String, Integer> map = new UnsortedMap<>();
+        UnsortedMap<String, Integer> map = new UnsortedMap<>();
         map.put("A", 10);
         map.put("B", 20);
         map.put("C", 30);
@@ -45,7 +45,7 @@ public class UnsortedMapTest {
 
     @Test
     public void size() {
-        Map<String, Integer> map = new UnsortedMap<>();
+        UnsortedMap<String, Integer> map = new UnsortedMap<>();
         map.put("A", 10);
         map.put("B", 20);
         map.put("C", 30);
