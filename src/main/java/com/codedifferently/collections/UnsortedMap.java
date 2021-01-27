@@ -78,9 +78,8 @@ public class UnsortedMap<K, V> implements Map<K, V>{
 
     @Override
     public void empty() {
-        if(hashMap == null) {
-            return;
-        }
+        hashMap = new LinkedList[0];
+        size = 0;
     }
     @Override
     public boolean containsKey(K key) {
