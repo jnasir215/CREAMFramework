@@ -2,7 +2,6 @@ package com.codedifferently.collections;
 
 import java.util.TreeMap;
 
-// This is a TreeSet
 public class SortedSet<T> implements Set<T> {
 
     private transient TreeMap<T, Object> tempSet;
