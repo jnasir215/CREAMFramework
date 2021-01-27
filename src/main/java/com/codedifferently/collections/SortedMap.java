@@ -4,13 +4,12 @@ import java.util.List;
 import java.util.LinkedList;
 import java.util.TreeSet;
 
-// This is a TreeMap
 public class SortedMap<K, V> implements Map<K, V> {
 
-    private List<KeyNode>[] buckets;                    // Buckets hold KeyNodes. KeyNodes hold pair.
+    private List<KeyNode>[] buckets;                    // Buckets hold KeyNodes. KeyNodes hold key and pair.
     private static final int BUCKETCOUNT = 16;
 
-    private TreeSet<K> tree;
+    private TreeSet<K> sortedKeysTree;
 
     class KeyNode<T> {
         public T key;
@@ -19,18 +18,18 @@ public class SortedMap<K, V> implements Map<K, V> {
 
     public SortedMap() {
         createEmptyBuckets();
-        tree = new TreeSet<>();
-
     }
 
+    // Instantiates an empty linked list for every bucket. Clears existing values if any exist.
     private void createEmptyBuckets() {
         buckets = new LinkedList[BUCKETCOUNT - 1];      // Subtract 1 because arrays are 0 based.
         for (int i = 0; i < buckets.length; i++) {
             buckets[i] = new LinkedList<>();
         }
-        tree = new TreeSet<>();
+        sortedKeysTree = new TreeSet<>();
     }
 
+    // Prints all buckets and the pairs in that bucket
     @Override
     public String toString() {
         String output = "";
@@ -46,38 +45,39 @@ public class SortedMap<K, V> implements Map<K, V> {
         return output;
     }
 
+    // Add a key value pair. If the key already exists, replace its pair with the new pair.
     @Override
     public void put(K key, V pair) {
         int index = getIndexFromHash(key);
 
         List<KeyNode> keyNodes = buckets[index];
 
-        // If there are no keys in this bucket, instantiate one
+        // If bucket is empty, add key
         if (keyNodes.size() == 0) {
-            KeyNode keyNode = new KeyNode();
-            keyNode.key = key;
-            keyNode.pair = pair;
-            buckets[index].add(keyNode);
-            tree.add(key);
+            addNewKey(key, pair, index);
             return;
         }
 
-        // Else, loop through every keynode to see if the key exists
+        // If bucket is not empty, loop through all keys in bucket.
         for (int i = 0; i < keyNodes.size(); i++) {
             KeyNode keyNode = keyNodes.get(i);
-            if (keyNode.key == key) {
+            if (keyNode.key == key) {                       // If key already exists, replace its pair with the new pair.
                 keyNode.pair = pair;
             } else {
-                // If not, create keynode for that key
-                KeyNode newKeyNode = new KeyNode();
-                newKeyNode.key = key;
-                newKeyNode.pair = pair;
-                buckets[index].add(newKeyNode);
-                tree.add(key);
+                addNewKey(key, pair, i);                    // If key does not exist, add key to bucket
             }
         }
     }
 
+    private void addNewKey(K key, V pair, int bucketIndex) {
+        KeyNode keyNode = new KeyNode();
+        keyNode.key = key;
+        keyNode.pair = pair;
+        buckets[bucketIndex].add(keyNode);
+        sortedKeysTree.add(key);
+    }
+
+    // Returns the pair associated with the key
     @Override
     public V get(K key) {
         int bucketIndex = getIndexFromHash(key);            // Key is the index of the bucket
@@ -93,15 +93,15 @@ public class SortedMap<K, V> implements Map<K, V> {
     }
 
     public K getFirstKey() {
-        return tree.first();
+        return sortedKeysTree.first();
     }
 
     public K getLastKey() {
-        return tree.last();
+        return sortedKeysTree.last();
     }
 
     public TreeSet<K> getKeys() {
-        return tree;
+        return sortedKeysTree;
     }
 
     @Override
@@ -113,7 +113,7 @@ public class SortedMap<K, V> implements Map<K, V> {
             KeyNode keyNode = keyNodes.get(i);
             if (key == keyNode.key) {
                 keyNodes.remove(i);
-                tree.remove(key);
+                sortedKeysTree.remove(key);
             }
         }
     }
@@ -167,7 +167,7 @@ public class SortedMap<K, V> implements Map<K, V> {
         return buckets.length;
     }
 
-    public TreeSet<K> getTree() {
-        return tree;
+    public TreeSet<K> getSortedKeysTree() {
+        return sortedKeysTree;
     }
 }

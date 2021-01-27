@@ -2,7 +2,7 @@ package com.codedifferently.collections;
 
 import org.junit.Assert;
 import org.junit.Test;
-import java.util.List;
+
 import java.util.TreeSet;
 
 public class SortedMapTest {
@@ -100,6 +100,7 @@ public class SortedMapTest {
                 "Bucket: 13\n" +
                 "Bucket: 14";
         String actual = map.toString();
+        System.out.println(map.toString());
         Assert.assertEquals(expected, actual);
     }
 
@@ -160,7 +161,7 @@ public class SortedMapTest {
 
         map.empty();
         int expected = 0;
-        TreeSet<String> treeSet = map.getTree();
+        TreeSet<String> treeSet = map.getSortedKeysTree();
         int actual = treeSet.size();
         Assert.assertEquals(expected, actual);
     }
