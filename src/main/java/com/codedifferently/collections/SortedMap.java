@@ -1,7 +1,5 @@
 package com.codedifferently.collections;
 
-import java.util.List;
-import java.util.LinkedList;
 import java.util.TreeSet;
 
 public class SortedMap<K, V> implements Map<K, V> {
@@ -71,6 +69,7 @@ public class SortedMap<K, V> implements Map<K, V> {
         }
     }
 
+    // Adds key to the given bucket
     private void addNewKey(K key, V pair, int bucketIndex) {
         KeyNode keyNode = new KeyNode();
         keyNode.key = key;
@@ -114,7 +113,7 @@ public class SortedMap<K, V> implements Map<K, V> {
         for (int i = 0; i < keyNodes.size(); i++) {
             KeyNode keyNode = keyNodes.get(i);
             if (key == keyNode.key) {
-                keyNodes.remove(i);
+                keyNodes.remove(keyNode);
                 sortedKeysTree.remove(key);
             }
         }
