@@ -126,13 +126,7 @@ public class SortedMap<K, V> implements Map<K, V> {
 
     @Override
     public Integer size() {
-        int counter = 0;
-        for (List<KeyNode> bucket : buckets) {
-            for (int i = 0; i < bucket.size(); i++) {
-                counter++;
-            }
-        }
-        return counter;
+        return sortedKeysTree.size();
     }
 
     @Override
